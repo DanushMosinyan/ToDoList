@@ -1,6 +1,6 @@
 var toDolist = [];
 
-function Submit() {
+function submit() {
   var task = document.getElementById("task");
   if (task.value != "") {
     toDolist.push(task.value);
@@ -14,24 +14,23 @@ function addToList(task, value) {
   var desc = document.createTextNode(task);
   var ol = document.getElementById("tasksList");
   var li = document.createElement("li");
-  var div = document.createElement("div");
+  var rowContainer = document.createElement("div");
   var deleteTask = document.createElement("button");
-  var div1 = document.createElement("div");
+  var textContainer = document.createElement("div");
   deleteTask.setAttribute("onclick", "deleteTask(this.parentElement)");
   deleteTask.setAttribute("content", "delete");
   var isActive = document.createElement("input");
-  isActive.setAttribute("onclick", "IsDone(this)");
+  isActive.setAttribute("onclick", "isDone(this)");
   isActive.setAttribute("type", "checkbox");
   deleteTask.innerHTML = "x";
-  div1.appendChild(desc);
-  div.appendChild(isActive);
-  div.appendChild(div1);
+  textContainer.appendChild(desc);
+  rowContainer.appendChild(isActive);
+  rowContainer.appendChild(textContainer);
   li.appendChild(deleteTask);
-  li.appendChild(div);
-  div.setAttribute("class","div1");
-  div1.setAttribute("style", "max-width: 190px;");
+  li.appendChild(rowContainer);
+  rowContainer.setAttribute("class","rowContainer");
+  textContainer.setAttribute("class", "textContainer");
   li.setAttribute("value", `${value}`);
-  div.setAttribute("style", "max-width: 190px;");
   ol.appendChild(li);
 }
 
@@ -48,15 +47,14 @@ function updateLocal() {
 }
 
 function deleteTask(li) {
-  debugger;
   var newToDoList = toDolist.filter((_, ind) => li.value != ind);
   toDolist = newToDoList;
   updateLocal();
   updateView();
 }
 
-function IsDone(input) {
-  checked = input.checked;
+function isDone(input) {
+  var checked = input.checked;
   li = input.parentElement;
   if (checked) return (li.style.textDecoration = "line-through");
   return (li.style.textDecoration = "none");
@@ -64,7 +62,7 @@ function IsDone(input) {
 
 document.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
-    Submit();
+    submit();
   }
 });
 

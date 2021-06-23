@@ -89,9 +89,14 @@ button:active {
   flex-direction: column;
 }
 
-.div1{
+.rowContainer{
     display: flex;
     flex-direction: row;
+    max-width: 190px;
+}
+
+.textContainer{
+    max-width: 190px;
 }
 
 body {
