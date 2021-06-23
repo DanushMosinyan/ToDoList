@@ -4,7 +4,7 @@ function Submit() {
   var task = document.getElementById("task");
   if (task.value != "") {
     toDolist.push(task.value);
-    addToList(task.value, toDolist.length);
+    addToList(task.value, toDolist.length - 1);
     task.value = null;
     updateLocal();
   }
@@ -28,7 +28,7 @@ function addToList(task, value) {
   div.appendChild(div1);
   li.appendChild(deleteTask);
   li.appendChild(div);
-  div1.setAttribute("width", "150px");
+  div.setAttribute("class","div1");
   div1.setAttribute("style", "max-width: 190px;");
   li.setAttribute("value", `${value}`);
   div.setAttribute("style", "max-width: 190px;");
@@ -36,16 +36,20 @@ function addToList(task, value) {
 }
 
 function updateLocal() {
-  localStorage.tasks = toDolist[0];
-  for (let index = 1; index < toDolist.length; index++) {
-    const element = toDolist[index];
-    localStorage.tasks = localStorage.tasks + "\n" + element;
+  if (toDolist.length > 0) {
+    localStorage.tasks = toDolist[0];
+    for (let index = 1; index < toDolist.length; index++) {
+      const element = toDolist[index];
+      localStorage.tasks = localStorage.tasks + "\n" + element;
+    }
+  } else {
+    localStorage.removeItem("tasks");
   }
 }
 
 function deleteTask(li) {
+  debugger;
   var newToDoList = toDolist.filter((_, ind) => li.value != ind);
-
   toDolist = newToDoList;
   updateLocal();
   updateView();
