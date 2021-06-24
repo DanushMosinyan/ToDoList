@@ -6,7 +6,7 @@ function submit() {
     toDolist.push(task.value);
     addToList(task.value, toDolist.length - 1);
     task.value = null;
-    updateLocal();
+    updateStorage();
   }
 }
 
@@ -28,28 +28,27 @@ function addToList(task, value) {
   rowContainer.appendChild(textContainer);
   li.appendChild(deleteTask);
   li.appendChild(rowContainer);
-  rowContainer.setAttribute("class","rowContainer");
+  rowContainer.setAttribute("class", "rowContainer");
   textContainer.setAttribute("class", "textContainer");
   li.setAttribute("value", `${value}`);
   ol.appendChild(li);
 }
 
-function updateLocal() {
-  if (toDolist.length > 0) {
-    localStorage.tasks = toDolist[0];
-    for (let index = 1; index < toDolist.length; index++) {
-      const element = toDolist[index];
-      localStorage.tasks = localStorage.tasks + "\n" + element;
-    }
-  } else {
-    localStorage.removeItem("tasks");
+function updateStorage() {
+  if ((toDolist.length = 0)) {
+    return localStorage.removeItem("tasks");
+  }
+  localStorage.tasks = toDolist[0];
+  for (let index = 1; index < toDolist.length; index++) {
+    const element = toDolist[index];
+    localStorage.tasks = localStorage.tasks + "\n" + element;
   }
 }
 
 function deleteTask(li) {
   let newToDoList = toDolist.filter((_, ind) => li.value != ind);
   toDolist = newToDoList;
-  updateLocal();
+  updateStorage();
   updateView();
 }
 
@@ -66,7 +65,7 @@ document.addEventListener("keyup", function (event) {
   }
 });
 
-function downloadFromLocal() {
+function getFromStorage() {
   let tasks = localStorage.tasks;
   let count = tasks.length;
   let task = "";
@@ -82,7 +81,7 @@ function downloadFromLocal() {
 }
 
 function afterViewLoaded() {
-  downloadFromLocal();
+  getFromStorage();
   showTasks();
 }
 
