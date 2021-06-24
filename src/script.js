@@ -1,7 +1,7 @@
-var toDolist = [];
+let toDolist = [];
 
 function submit() {
-  var task = document.getElementById("task");
+  let task = document.getElementById("task");
   if (task.value != "") {
     toDolist.push(task.value);
     addToList(task.value, toDolist.length - 1);
@@ -11,15 +11,15 @@ function submit() {
 }
 
 function addToList(task, value) {
-  var desc = document.createTextNode(task);
-  var ol = document.getElementById("tasksList");
-  var li = document.createElement("li");
-  var rowContainer = document.createElement("div");
-  var deleteTask = document.createElement("button");
-  var textContainer = document.createElement("div");
+  let desc = document.createTextNode(task);
+  let ol = document.getElementById("tasksList");
+  let li = document.createElement("li");
+  let rowContainer = document.createElement("div");
+  let deleteTask = document.createElement("button");
+  let textContainer = document.createElement("div");
   deleteTask.setAttribute("onclick", "deleteTask(this.parentElement)");
   deleteTask.setAttribute("content", "delete");
-  var isActive = document.createElement("input");
+  let isActive = document.createElement("input");
   isActive.setAttribute("onclick", "isDone(this)");
   isActive.setAttribute("type", "checkbox");
   deleteTask.innerHTML = "x";
@@ -47,14 +47,14 @@ function updateLocal() {
 }
 
 function deleteTask(li) {
-  var newToDoList = toDolist.filter((_, ind) => li.value != ind);
+  let newToDoList = toDolist.filter((_, ind) => li.value != ind);
   toDolist = newToDoList;
   updateLocal();
   updateView();
 }
 
 function isDone(input) {
-  var checked = input.checked;
+  let checked = input.checked;
   li = input.parentElement;
   if (checked) return (li.style.textDecoration = "line-through");
   return (li.style.textDecoration = "none");
@@ -68,9 +68,9 @@ document.addEventListener("keyup", function (event) {
 
 function downloadFromLocal() {
   let tasks = localStorage.tasks;
-  var count = tasks.length;
-  var task = "";
-  for (var i = 0; i < count; i++) {
+  let count = tasks.length;
+  let task = "";
+  for (let i = 0; i < count; i++) {
     if (tasks[i] == "\n") {
       toDolist.push(task);
       task = "";
@@ -93,7 +93,7 @@ function removeAllChildNodes(parent) {
 }
 
 function updateView() {
-  var ol = document.getElementById("tasksList");
+  let ol = document.getElementById("tasksList");
   removeAllChildNodes(ol);
   showTasks();
 }
