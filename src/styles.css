@@ -1,0 +1,113 @@
+ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+.addButton {
+  background-color: transparent;
+  color: navy;
+  font-weight: 900;
+}
+
+h1{
+    color: white;
+}
+
+.body{
+    width: 252px;
+}
+
+li{
+    display: flex;
+    word-wrap: break-word;
+    align-items: center;
+    align-content: center;
+    padding: 5px;
+    width: 96%;
+    max-width: 252px;
+}
+
+
+.addButton:hover{
+    background-color: transparent;
+    color: lightblue;
+    font-weight: 900;
+}
+
+.addButton:active{
+    background-color: transparent;
+    color: rgb(173, 230, 173);
+    font-weight: 900;
+}
+
+.taskCreator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  padding-right: 5px;
+}
+
+#task{
+    border: transparent;
+    outline:none
+}
+
+button {
+  color: black;
+  background-color: rgb(61, 216, 131);
+  border-style: none;
+  padding: 3px 4px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+button:hover {
+  color: blue;
+  background-color: rgb(133, 22, 22);
+  border-style: none;
+  padding: 3px 4px;
+}
+
+button:active {
+  color: white;
+  background-color: red;
+  border-style: none;
+  padding: 3px 4px;
+}
+
+.tasks {
+  background-color: white;
+  padding: 20px,20px;
+  max-width: 500px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.rowContainer{
+    display: flex;
+    flex-direction: row;
+    max-width: 190px;
+}
+
+.textContainer{
+    max-width: 190px;
+}
+
+body {
+  background-image: linear-gradient(to right, red, rgb(21, 23, 165));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskCreator {
+  background-color: white;
+  padding: 15px;
+}
