@@ -35,14 +35,8 @@ function addToList(task, value) {
 }
 
 function updateStorage() {
-  if ((toDolist.length = 0)) {
-    return localStorage.removeItem("tasks");
-  }
-  localStorage.tasks = toDolist[0];
-  for (let index = 1; index < toDolist.length; index++) {
-    const element = toDolist[index];
-    localStorage.tasks = localStorage.tasks + "\n" + element;
-  }
+  if (toDolist.length == 0) return localStorage.removeItem("tasks");
+  localStorage.tasks = JSON.stringify(toDolist);
 }
 
 function deleteTask(li) {
@@ -67,17 +61,7 @@ document.addEventListener("keyup", function (event) {
 
 function getFromStorage() {
   let tasks = localStorage.tasks;
-  let count = tasks.length;
-  let task = "";
-  for (let i = 0; i < count; i++) {
-    if (tasks[i] == "\n") {
-      toDolist.push(task);
-      task = "";
-      continue;
-    }
-    task = task + tasks[i];
-  }
-  toDolist.push(task);
+  toDolist = JSON.parse(tasks);
 }
 
 function afterViewLoaded() {
